@@ -45,7 +45,7 @@ def main():
         for webm in webm_paths:
             modify_webm_file(webm, prefix, patch)
     else:
-        modify_webm_file(f"{args.f}.webm", prefix, patch)
+        modify_webm_file(f"{args.input_dir}/{args.f}.webm", prefix, patch)
 
 
 if __name__ == "__main__":
