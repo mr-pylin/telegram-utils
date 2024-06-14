@@ -29,10 +29,10 @@ def main():
     parser.add_argument("input_dir", help="directory with webm files [e.g. ./path_to_videos]")
 
     # optional arguments
-    parser.add_argument("-f", type=str, default=None, help="webm filename [e.g. temp]")
+    parser.add_argument("-f", type=str, nargs='+', help="webm filenames [e.g. f1 f2 f3 ...]")
     parser.add_argument("-a", "--all", type=bool, default=False, help="wether to modify all webm files or a single one")
 
-    # Parse the command-line arguments
+    # parse the command-line arguments
     args = parser.parse_args()
 
     # values to modify the videos
@@ -45,7 +45,8 @@ def main():
         for webm in webm_paths:
             modify_webm_file(webm, prefix, patch)
     else:
-        modify_webm_file(f"{args.input_dir}/{args.f}.webm", prefix, patch)
+        for file in args.f:
+            modify_webm_file(f"{args.input_dir}/{file}.webm", prefix, patch)
 
 
 if __name__ == "__main__":
